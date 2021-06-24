@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<grid>
+	<columns>
+		<column source="TaskRunTime" caption="Task run time" wrap="false" localize="false">
+			<filter type="text" />
+		</column>
+		<column source="IDs" caption="Success IDs" wrap="false" localize="false">
+			<filter type="text" />
+		</column>
+		<column source="FailIdIDs" caption="Faild IDs" wrap="false" localize="false">
+			<filter type="text" />
+		</column>
+		<column source="Result" caption="Result" wrap="false" localize="false">
+			<filter type="text" />
+		</column>
+		<column source="LastID" caption="LastID" wrap="false" localize="false">
+			<filter type="text" />
+		</column>
+		<column cssclass="filling-column" />
+	</columns>
+	<objecttype name="customdatasynchronization.historyofscheduledtask" columns="TaskRunTime, IDs, Result, LastID,FailIdIDs" />
+	<options>
+		<key name="DisplayFilter" value="true" />
+	</options>
+</grid>
