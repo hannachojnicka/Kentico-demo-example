@@ -10,5 +10,8 @@ namespace CustomDataSynchroModule.Interfaces
     public interface IFormService : IService
     {
         List<CoffeSampleListDto> GetFormRecordedItems(ScheduledTaskResultDto lastScheduledTaskResult);
+        int GetLastId(List<int> successIds, List<int> lastFaildIds, int lastId);
+        List<int> GetSplitedIds(string ids);
+
     }
 }

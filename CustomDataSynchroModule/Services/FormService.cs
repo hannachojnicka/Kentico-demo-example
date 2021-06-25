@@ -8,6 +8,7 @@ using CMS.Base;
 using CMS.DataEngine;
 using CMS.OnlineForms;
 using CMS.OnlineForms.Types;
+using CustomDataSynchroModule.Helpers;
 using CustomDataSynchroModule.Interfaces;
 using CustomDataSynchroModule.Mappers;
 using CustomDataSynchroModule.Models.Dto;
@@ -49,11 +50,11 @@ namespace CustomDataSynchroModule.Services
                 records.AddRange(data.Select(p => _coffeSampleFormMapper.CreateCoffeSampleListDto(p)));
             }
 
-            return records.OrderBy(p => p.Id).ToList();
+            return records.DistinctBy(p=>p.Id).OrderBy(p => p.Id).ToList();
 
         }
 
-        private List<int> GetSplitedIds(string ids)
+        public List<int> GetSplitedIds(string ids)
         {
 
             return ids
@@ -61,6 +62,15 @@ namespace CustomDataSynchroModule.Services
                 .Select(p => p.ToInteger(0))
                 .ToList();
 
+        }
+
+        public int GetLastId(List<int> successIds, List<int> lastFaildIds, int lastId)
+        {
+
+            var validSuccessList = successIds.Except(lastFaildIds).ToList();
+
+            return validSuccessList.Any() ? successIds.
+                LastOrDefault() : lastId;
         }
     }
 }

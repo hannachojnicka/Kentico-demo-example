@@ -16,9 +16,12 @@
 		<column source="LastID" caption="LastID" wrap="false" localize="false">
 			<filter type="text" />
 		</column>
+		<column source="NumberOfSuccessIDs" caption="NumberOfSuccessIDs" wrap="false" localize="false">
+			<filter type="text" />
+		</column>
 		<column cssclass="filling-column" />
 	</columns>
-	<objecttype name="customdatasynchronization.historyofscheduledtask" columns="TaskRunTime, IDs, Result, LastID,FailIdIDs" />
+	<objecttype name="customdatasynchronization.historyofscheduledtask" columns="TaskRunTime, IDs, Result, LastID,FailIdIDs, NumberOfSuccessIDs" />
 	<options>
 		<key name="DisplayFilter" value="true" />
 	</options>

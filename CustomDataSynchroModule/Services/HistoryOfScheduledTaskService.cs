@@ -28,7 +28,7 @@ namespace CustomDataSynchroModule.Services
                 return new ScheduledTaskResultDto() { LastId = lastElement.LastID, FaildIds = lastElement.FailIdIDs };
             }
 
-            return new ScheduledTaskResultDto() ;
+            return new ScheduledTaskResultDto() { FaildIds = ""} ;
         }
 
         public void AddHistoryOfScheduledTask(ScheduledTaskResultDto scheduledTaskResult)

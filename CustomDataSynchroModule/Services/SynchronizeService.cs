@@ -28,14 +28,16 @@ namespace CustomDataSynchroModule.Services
         public string RunSynchronization()
         {
             StringBuilder result = new StringBuilder();
-            
+
             var lastItem = new ScheduledTaskResultDto();
+            var lastFaildIds = new List<int>();
             var successIds = new List<int>();
             var failIds = new List<int>();
 
             try
             {
                 lastItem = _historyOfScheduledTaskSerivce.GetLastSynchronizedItem();
+                lastFaildIds = _formService.GetSplitedIds(lastItem.FaildIds);
                 var items = _formService.GetFormRecordedItems(lastItem);
                 var urlAPI = SettingsKeyInfoProvider.GetValue(Constants.API_URL_SYNCHROFORM_SETTINGS_KEY, SiteContext.CurrentSiteID);
 
@@ -63,7 +65,7 @@ namespace CustomDataSynchroModule.Services
 
                 result.AppendLine($"{successIds.Count} form items successfully sent, {failIds.Count} failed.");
 
-                
+
 
             }
             catch (Exception ex)
@@ -75,8 +77,7 @@ namespace CustomDataSynchroModule.Services
             {
                 Date = DateTime.Now,
                 Ids = successIds.Select(p => p.ToString()).Join(","),
-                LastId = successIds.Any() && (!string.IsNullOrEmpty(lastItem.FaildIds) && !lastItem.FaildIds.Contains(successIds.LastOrDefault().ToString())) ? successIds.
-                LastOrDefault() : lastItem.LastId,
+                LastId = _formService.GetLastId(successIds, lastFaildIds, lastItem.LastId),
                 Result = result.ToString(),
                 FaildIds = failIds.Select(p => p.ToString()).Join(","),
                 NumberOfSuccessIDs = successIds.Count
@@ -85,6 +86,9 @@ namespace CustomDataSynchroModule.Services
             _historyOfScheduledTaskSerivce.AddHistoryOfScheduledTask(scheduledTaskResult);
             return result.ToString();
         }
+
+      
+
 
     }
 }
