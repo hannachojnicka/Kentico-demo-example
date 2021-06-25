@@ -7,21 +7,15 @@
 		<column source="IDs" caption="Success IDs" wrap="false" localize="false">
 			<filter type="text" />
 		</column>
-		<column source="FailIdIDs" caption="Faild IDs" wrap="false" localize="false">
+		<column source="FailIdIDs" caption="Faild IDs" wrap="false" localize="false" >
 			<filter type="text" />
 		</column>
-		<column source="Result" caption="Result" wrap="false" localize="false">
-			<filter type="text" />
-		</column>
-		<column source="LastID" caption="LastID" wrap="false" localize="false">
-			<filter type="text" />
-		</column>
-		<column source="NumberOfSuccessIDs" caption="NumberOfSuccessIDs" wrap="false" localize="false">
+		<column source="Result" caption="Result" wrap="true" localize="false" cssclass="main-column-60">
 			<filter type="text" />
 		</column>
 		<column cssclass="filling-column" />
 	</columns>
-	<objecttype name="customdatasynchronization.historyofscheduledtask" columns="TaskRunTime, IDs, Result, LastID,FailIdIDs, NumberOfSuccessIDs" />
+	<objecttype name="customdatasynchronization.historyofscheduledtask" columns="TaskRunTime, IDs, Result, LastID,FailIdIDs" />
 	<options>
 		<key name="DisplayFilter" value="true" />
 	</options>

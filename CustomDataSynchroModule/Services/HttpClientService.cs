@@ -19,6 +19,7 @@ namespace CustomDataSynchroModule.Services
         {
             var result = _client.SendAsync(request).Result;
             return result.IsSuccessStatusCode;
+
             
         }
     }

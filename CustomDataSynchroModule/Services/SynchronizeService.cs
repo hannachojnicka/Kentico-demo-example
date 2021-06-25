@@ -54,6 +54,7 @@ namespace CustomDataSynchroModule.Services
                         else
                         {
                             failIds.Add(item.Id);
+                            result.AppendLine($"ItemId {item.Id} - The server is unable to connect.");
                         }
                     }
                     catch (Exception ex)
